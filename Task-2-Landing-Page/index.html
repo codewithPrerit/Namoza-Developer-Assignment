@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OrthoNow | Book Your Consultation</title>
+
+    <meta name="description"
+        content="Book an expert orthopaedic consultation for knee and back pain at OrthoNow.">
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #222;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 520px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.badge {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #0f172a;
+}
+
+.subtitle {
+    color: #555;
+    font-size: 17px;
+}
+
+.trust {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 18px;
+    margin: 30px 0;
+}
+
+.trust-item {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.form-section {
+    margin-top: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #1565c0;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #1565c0;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+button:hover {
+    background: #0d47a1;
+}
+
+.thank-you {
+    text-align: center;
+    padding: 30px;
+}
+
+.thank-you h2 {
+    color: #2e7d32;
+    margin-bottom: 15px;
+}
+
+@media (max-width:600px){
+
+    .container{
+        margin:0;
+        min-height:100vh;
+        border-radius:0;
+        padding:25px;
+    }
+
+    h1{
+        font-size:26px;
+    }
+
+    .subtitle{
+        font-size:16px;
+    }
+
+}
+
+    </style>
+
+</head>
+<body>
+<div class="container">
+
+    <section class="hero">
+
+        <div class="badge">
+            🏥 9 Clinics • ⭐ 4.8 Rated
+        </div>
+
+        <h1>
+            Struggling with Knee or Back Pain?
+        </h1>
+
+        <p class="subtitle">
+            Get an expert orthopaedic opinion from experienced specialists at
+            OrthoNow. Book your consultation in less than 30 seconds.
+        </p>
+
+    </section>
+
+    <section class="trust">
+
+        <div class="trust-item">
+            👨‍⚕️ Experienced Orthopaedic Specialists
+        </div>
+
+        <div class="trust-item">
+            🏥 9 Clinics Across Bengaluru, Hyderabad & Chennai
+        </div>
+
+        <div class="trust-item">
+            ⭐ Trusted by Thousands of Patients
+        </div>
+
+    </section>
+
+    <section class="form-section">
+
+        <form id="consultationForm" novalidate>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                maxlength="50"
+                required>
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Enter phone number"
+                maxlength="10"
+                required>
+                
+                
+            
+
+            <button type="submit">
+                Book My Consultation
+            </button>
+
+        </form>
+
+    </section>
+
+    <section
+        id="thankYou"
+        class="thank-you"
+        style="display:none;">
+
+        <h2>✅ Thank You!</h2>
+
+        <p>
+            Your consultation request has been received.
+            Our team will contact you shortly.
+        </p>
+
+    </section>
+
+</div>
+<script>
+
+// Initialize dataLayer if GTM is not loaded
+window.dataLayer = window.dataLayer || [];
+
+const form = document.getElementById("consultationForm");
+const thankYou = document.getElementById("thankYou");
+
+form.addEventListener("submit", function (e) {
+
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+        alert("Please enter a valid 10-digit mobile number.");
+        return;
+    }
+
+    // Push event to GTM dataLayer
+    window.dataLayer.push({
+        event: "consultation_form_submitted",
+        patient_name: name,
+        phone_number: phone,
+        campaign:"orthonow_consultation",
+        page_name: "consultation_landing_page"
+
+    });
+
+    // Show event in browser console
+    console.table(window.dataLayer);
+
+    // Hide form
+    form.style.display = "none";
+
+    // Show Thank You message
+    thankYou.style.display = "block";
+
+});
+
+</script>
+</body>
+</html>
